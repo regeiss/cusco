@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
     this.title,
     this.onPressed,
     this.titleStyle,
-    this.backgroundColor = Colors.red,
+    this.backgroundColor = Colors.green,
     this.shape,
     this.width = 140,
     this.height = 50,
@@ -25,19 +25,12 @@ class CustomButton extends StatelessWidget {
   final double gap;
   final double elevation;
   final VoidCallback? onPressed;
-  /// [titleStyle] is used to style the button text
   final TextStyle? titleStyle;
-  /// [gradient] for enabled state of button
   final Color backgroundColor;
-  /// [shape] is used to apply border radius on button,
   final ShapeBorder? shape;
-  /// [width] button width, defaults is 140
   final double width;
-  /// [height] button height, defaults is 44
   final double height;
-  /// [loading] is used to display circular progress indicator on loading event, default is false
   final bool loading;
-  /// [isDisabled] is used to disable to button, default is true
   final bool isDisabled;
   final Color? splashColor;
 
