@@ -1,8 +1,9 @@
 import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/src/core/router/routes.dart';
 // import 'package:gtk_flutter/src/core/router/router.dart';
-// import 'package:gtk_flutter/src/feature/auth/screens/login/views/google_login.dart';
+import 'package:gtk_flutter/src/feature/auth/screens/login/views/google_login.dart';
 import 'package:gtk_flutter/src/feature/home/home_screen.dart';
-// import 'package:gtk_flutter/src/feature/auth/screens/login/views/signup_view.dart';
+import 'package:gtk_flutter/src/feature/auth/screens/login/views/signup_view.dart';
 import 'package:gtk_flutter/src/feature/onboarding/screens/onboarding_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../feature/onboarding/providers/onboarding_provider.dart';
@@ -21,6 +22,16 @@ class AppRouter {
         GoRoute(
           path: '/home',
           builder: (context, state) => HomeScreen(),
+        ),
+        GoRoute(
+          name: 'login_email',
+          path: Routes.loginEmail,
+          builder: (context, state) => SignupView(),
+        ),
+        GoRoute(
+          name: 'login_google',
+          path: Routes.loginGoogle,
+          builder: (context, state) => GoogleLoginScreen(),
         ),
       ],
     );
