@@ -64,6 +64,7 @@ flutter:
     - assets/meditating.png
     - assets/photography.png
     - assets/reading-book.png
+    - assets/image_placeholder.png
 
 fonts:
   - family: SocialIcons

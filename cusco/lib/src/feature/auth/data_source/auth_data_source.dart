@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../firebase_options.dart';
-import '../../../core/providers/firebase_providers.dart';
+import '../../../../core/firebase/providers/firebase_providers.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,11 +13,9 @@ class AuthDataSource {
 
   Future<Either<String, User>> signup({required String email, required String password}) async {
     try {
-      final response = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      final response = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       return right(response.user!);
-    } 
-    on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       return left(e.message ?? 'Failed to Signup.');
     }
   }
@@ -30,7 +28,7 @@ class AuthDataSource {
       );
       return right(response.user);
     } on FirebaseAuthException catch (e) {
-      return left(e.message ?? 'Falha no Login');
+      return left(e.message ?? 'Failed to Login');
     }
   }
 
@@ -38,22 +36,25 @@ class AuthDataSource {
     try {
       final googleSignIn = GoogleSignIn(clientId: DefaultFirebaseOptions.ios.iosClientId);
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      
+
       if (googleUser != null) {
         final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-        final AuthCredential credential = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken, idToken: googleAuth.idToken,);
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
 
         final response = await _firebaseAuth.signInWithCredential(credential);
         return right(response.user!);
-
       } else {
         return left('Erro desconhecido');
       }
-    } 
-    on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       return left(e.message ?? 'Erro desconhecido');
     }
   }
 }
 
-final authDataSourceProvider = Provider<AuthDataSource>((ref) => AuthDataSource(ref.read(firebaseAuthProvider), ref),);
+final authDataSourceProvider = Provider<AuthDataSource>(
+  (ref) => AuthDataSource(ref.read(firebaseAuthProvider), ref),
+);
