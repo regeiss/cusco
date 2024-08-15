@@ -1,8 +1,8 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gtk_flutter/core/firebase/providers/firebase_providers.dart';
-import 'package:gtk_flutter/src/contants/app_sizes.dart';
+import 'package:gtk_flutter/src/constants/app_sizes.dart';
+import 'package:gtk_flutter/src/feature/auth/data/firebase_auth_repository.dart';
 
 import 'auth_providers.dart';
 

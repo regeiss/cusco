@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gtk_flutter/core/router/app_router.dart';
 import 'package:gtk_flutter/src/common_widgets/primary_button.dart';
 import 'package:gtk_flutter/src/common_widgets/responsive_center.dart';
-import 'package:gtk_flutter/src/contants/app_sizes.dart';
+import 'package:gtk_flutter/src/constants/app_sizes.dart';
 import 'package:gtk_flutter/src/feature/onboarding/presentation/onboarding_controller.dart';
 
 class OnboardingScreen extends ConsumerWidget {
@@ -41,12 +40,10 @@ class OnboardingScreen extends ConsumerWidget {
               onPressed: state.isLoading
                   ? null
                   : () async {
-                      await ref
-                          .read(onboardingControllerProvider.notifier)
-                          .completeOnboarding();
+                      await ref.read(onboardingControllerProvider.notifier).completeOnboarding();
                       if (context.mounted) {
                         // go to sign in page after completing onboarding
-                        context.goNamed(AppRoute.signIn.name);
+                        context.goNamed('/home');
                       }
                     },
             ),

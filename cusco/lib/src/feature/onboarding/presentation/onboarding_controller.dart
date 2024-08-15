@@ -8,12 +8,10 @@ part 'onboarding_controller.g.dart';
 class OnboardingController extends _$OnboardingController {
   @override
   FutureOr<void> build() {
-    // no op
   }
 
   Future<void> completeOnboarding() async {
-    final onboardingRepository =
-        ref.watch(onboardingRepositoryProvider).requireValue;
+    final onboardingRepository = ref.watch(onboardingRepositoryProvider).requireValue;
     state = const AsyncLoading();
     state = await AsyncValue.guard(onboardingRepository.setOnboardingComplete);
   }
