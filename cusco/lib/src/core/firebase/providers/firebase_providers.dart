@@ -3,8 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final firebaseAuthProvider = Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
 
-// register others providers
-
 // final firebaseFirestoreProvider =
 //     Provider<FirebaseFirestore>((ref) => FirebaseFirestore.instance);
 

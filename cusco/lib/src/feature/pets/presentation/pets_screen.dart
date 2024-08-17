@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import 'package:gtk_flutter/src/common_widgets/appbar.dart';
+import 'package:gtk_flutter/src/common_widgets/drawer.dart';
+import 'package:gtk_flutter/src/constants/app_sizes.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+class PetsScreen extends ConsumerWidget {
+  const PetsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    var card = Container(
+      height: 150,
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+        ),
+        child: ListTile(
+          dense: false,
+          leading: FlutterLogo(),
+          title: Text(
+            "Flutter Easy Learning\nTutorial #31",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+          subtitle: Text(
+            "Instructor: Mustafa Tahir",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          trailing: Icon(Icons.arrow_forward_ios),
+        ),
+      ),
+    );
+
+    return Scaffold(
+      appBar: BaseAppBar(
+        title: Text('Cusco App'),
+        appBar: AppBar(),
+        widgets: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Logout', 'Ajustes'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ], //<Widget>[Icon(Icons.more_vert)],
+      ),
+      drawer: MainDrawer(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              card,
+              gapW4,
+              card,
+              gapW4,
+              card,
+              card,
+              gapW4,
+              card,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void handleClick(String value) {}
+}
