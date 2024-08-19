@@ -12,19 +12,19 @@ class PetsScreen extends ConsumerWidget {
     var card = Container(
       height: 150,
       child: Card(
-        elevation: 2,
+        elevation: 1,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30)),
+          borderRadius: BorderRadius.all(Radius.circular(1)),
         ),
         child: ListTile(
           dense: false,
           leading: FlutterLogo(),
           title: Text(
-            "Flutter Easy Learning\nTutorial #31",
+            "Cusco tal\n #31",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           subtitle: Text(
-            "Instructor: Mustafa Tahir",
+            "Raça: Indefinida",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           trailing: Icon(Icons.arrow_forward_ios),
@@ -34,7 +34,7 @@ class PetsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: BaseAppBar(
-        title: Text('Cusco App'),
+        title: Text('Pets'),
         appBar: AppBar(),
         widgets: <Widget>[
           PopupMenuButton<String>(

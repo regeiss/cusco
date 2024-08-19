@@ -5,6 +5,7 @@ import 'package:gtk_flutter/src/core/router/app_startup.dart';
 import 'package:gtk_flutter/src/core/router/go_router_refresh_stream.dart';
 import 'package:gtk_flutter/src/core/router/scaffold_with_nested_navigation.dart';
 import 'package:gtk_flutter/src/core/router/views/not_found_page.dart';
+import 'package:gtk_flutter/src/feature/abrigos/presentation/abrigos_screen.dart';
 import 'package:gtk_flutter/src/feature/auth/data/firebase_auth_repository.dart';
 import 'package:gtk_flutter/src/feature/auth/presentation/custom_sign_in_screen.dart';
 import 'package:gtk_flutter/src/feature/entries/presentation/entries_screen.dart';
@@ -17,13 +18,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'app_router.g.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _entriesNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'portes');
+final _abrigosNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'portes');
 final _accountNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'entries');
 final _jobsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'jobs');
 final _petsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'pets');
 final _matchesNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'matches');
 
-enum AppRoute { onboarding, signIn, entry, addEntry, editEntry, entries, profile, matches, pets, home }
+enum AppRoute { onboarding, signIn, entry, addEntry, editEntry, abrigos, profile, matches, pets, home }
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
@@ -114,13 +115,25 @@ GoRouter goRouter(GoRouterRef ref) {
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _entriesNavigatorKey,
+            navigatorKey: _petsNavigatorKey,
             routes: [
               GoRoute(
                 path: '/pets',
-                name: AppRoute.entries.name,
+                name: AppRoute.pets.name,
                 pageBuilder: (context, state) => const NoTransitionPage(
                   child: PetsScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _abrigosNavigatorKey,
+            routes: [
+              GoRoute(
+                path: '/abrigos',
+                name: AppRoute.abrigos.name,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: AbrigosScreen(),
                 ),
               ),
             ],
@@ -131,18 +144,6 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: '/matches',
                 name: AppRoute.matches.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
-                  child: ProfileScreen(),
-                ),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _petsNavigatorKey,
-            routes: [
-              GoRoute(
-                path: '/entries',
-                name: AppRoute.pets.name,
                 pageBuilder: (context, state) => const NoTransitionPage(
                   child: EntriesScreen(),
                 ),
